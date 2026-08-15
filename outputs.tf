@@ -12,7 +12,7 @@ output "emr_instance_fleets_instance_type_configs" {
 }
 output "emr_instance_fleets_launch_specifications" {
   description = "Map of launch_specifications values across all emr_instance_fleets, keyed the same as var.emr_instance_fleets"
-  value       = { for k, v in aws_emr_instance_fleet.emr_instance_fleets : k => v.launch_specifications if v.launch_specifications != null && length(v.launch_specifications) > 0 }
+  value       = { for k, v in aws_emr_instance_fleet.emr_instance_fleets : k => one(v.launch_specifications) if v.launch_specifications != null && length(v.launch_specifications) > 0 }
 }
 output "emr_instance_fleets_name" {
   description = "Map of name values across all emr_instance_fleets, keyed the same as var.emr_instance_fleets"
